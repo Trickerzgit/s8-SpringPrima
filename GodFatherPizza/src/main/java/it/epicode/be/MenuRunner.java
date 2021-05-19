@@ -1,11 +1,9 @@
 package it.epicode.be;
 
 import java.util.HashMap;
-import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -18,14 +16,17 @@ import it.epicode.be.model.Menu;
 import it.epicode.be.model.MenuItem;
 import it.epicode.be.model.Ordine;
 import it.epicode.be.model.Pizza;
-import it.epicode.be.model.StatoTavolo;
 import it.epicode.be.model.Tavolo;
 
 @Component
 public class MenuRunner implements CommandLineRunner {
 
-	private static final Logger logger = LoggerFactory.getLogger(GodFatherPizzaApplication.class);
-	private static ApplicationContext ctx;
+	@Autowired
+	private ApplicationContext ctx;
+	
+	
+	@Value("${godfatherpizza.costocoperto}")
+	private double coperto;
 
 	@Autowired
 	private Menu menu;
@@ -34,14 +35,12 @@ public class MenuRunner implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		ctx = new AnnotationConfigApplicationContext(MenuConfigurazione.class);
-		
-		Map<MenuItem, Integer> ordini = new HashMap<MenuItem, Integer>();
 
 		popolaMenuCibo(menu);
 		popolaMenuGadget(menu);
-
-		Tavolo t1 = new Tavolo(1, 4, StatoTavolo.OCCUPATO);
-		Ordine o1 = new Ordine(t1, 1, 3, ordini);
+		
+		Tavolo t1 = ctx.getBean(Tavolo.class);
+		Ordine o1 = ctx.getBean(Ordine.class);
 		
 		o1.addItem((Pizza) ctx.getBean("Margherita"));
 		o1.addItem((Pizza) ctx.getBean("Margherita"));
@@ -49,6 +48,7 @@ public class MenuRunner implements CommandLineRunner {
 		o1.addItem((Pizza) ctx.getBean("SalamePizza"));
 
 		o1.stampa();
+		o1.getTotale(coperto);
 
 	}
 

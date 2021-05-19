@@ -5,10 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import org.slf4j.LoggerFactory;
-
-import org.slf4j.Logger;
-
 import it.epicode.be.model.Bevanda;
 import it.epicode.be.model.Condimento;
 import it.epicode.be.model.FranchiseItem;
@@ -19,7 +15,6 @@ import it.epicode.be.model.Pizza;
 @SpringBootApplication
 public class GodFatherPizzaApplication {
 	
-	private static final Logger logger = LoggerFactory.getLogger(GodFatherPizzaApplication.class);
 	private static ApplicationContext ctx;
 
 	public static void main(String[] args) throws Exception {
@@ -27,6 +22,8 @@ public class GodFatherPizzaApplication {
 		
 		ctx = new AnnotationConfigApplicationContext(MenuConfigurazione.class);
 		Menu menu = ctx.getBean(Menu.class);
+		
+		
 
 
 	}
