@@ -25,6 +25,7 @@ public class Ordine {
 	private int numeroCoperti;
 	private LocalTime orario;
 	private double sommaCosti;
+	private StatoOrdine statoOrdine;
 	
 
 	

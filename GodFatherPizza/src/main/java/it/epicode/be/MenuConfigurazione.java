@@ -132,9 +132,33 @@ public class MenuConfigurazione {
 		return new Tavolo(2, 10, StatoTavolo.OCCUPATO);
 	}
 	
+	@Bean({"Tavolo2"})
+	@Scope("singleton")
+	public Tavolo getTavolo2() {
+		return new Tavolo(3, 10, StatoTavolo.OCCUPATO);
+	}
+	
+	@Bean({"Tavolo3"})
+	@Scope("singleton")
+	public Tavolo getTavolo3() {
+		return new Tavolo(5, 10, StatoTavolo.OCCUPATO);
+	}
+	
 	@Bean({"Ordine"})
-	@Scope("prototype")
+	@Scope("singleton")
 	public Ordine getOrdine() {
 		return new Ordine(getTavolo(), 1, 3); 
+	}
+	
+	@Bean({"Ordine2"})
+	@Scope("prototype")
+	public Ordine getOrdine2() {
+		return new Ordine(getTavolo2(), 2, 4); 
+	}
+	
+	@Bean({"Ordine3"})
+	@Scope("prototype")
+	public Ordine getOrdine3() {
+		return new Ordine(getTavolo3(), 3, 6); 
 	}
 }

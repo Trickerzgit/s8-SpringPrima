@@ -1,0 +1,19 @@
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>Dati Ordine</title>
+<meta http-equiv="Contnt-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Dettagli dell'ordine</h1>
+<h3>Numero: <span th:text="${numero}"></span></h3>
+<h3>Numero coperti: <span th:text="${numeroCoperti}"></span></h3>
+<h3>Orario: <span th:text="${orario}"></span></h3>
+<div th:each="ordine: ${ordini}">
+<h3>Ordini: <span th:text="${ordine.key.name}"></span> qta: <span th:text="${ordine.value}"></span> costo: <span th:text="${ordine.key.price}"></span></h3></div>
+<h3>Totale: <span th:text="${totale}"></span></h3>
+<h3>Tavolo: <span th:text="${tavolo}"></span></h3>
+<h3>Stato: <span th:text="${stato}"></span></h3>
+
+</body>
+
+</head>

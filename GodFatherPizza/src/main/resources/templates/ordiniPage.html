@@ -1,0 +1,34 @@
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>Menu</title>
+<meta http-equiv="Contnt-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+	<h1>Ordini</h1>
+
+	<table>
+		<tr>
+			<th>Ordine</th>
+			<th>Tavolo</th>
+			<th>Coperti</th>
+			<th>Stato</th>
+			<th>Totale</th>
+		</tr>
+		<tr th:each="ordine : ${lista}">
+			<td th:text="${ordine.numeroOrdine}"></td>
+			<td th:text="${ordine.tavolo.numero}"></td>
+			<td th:text="${ordine.numeroCoperti}"></td>
+			<td th:text="${ordine.statoOrdine}"></td>
+			<td th:text="${ordine.sommaCosti}"></td>
+		</tr>
+	</table>
+	
+	<form action="#" th:action="@{/cerca}" th:object="${ordine}" method="get">
+	<p>
+	Numero Ordine: <input type="text" th:field="*{numeroOrdine}"/>
+	</p>
+	<input type="submit" value="Cerca"/>
+	</form>
+</body>
+</html>

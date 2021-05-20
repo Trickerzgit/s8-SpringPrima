@@ -1,0 +1,38 @@
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>Menu</title>
+<meta http-equiv="Contnt-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+	<h1>Menu</h1>
+	<table>
+		<tr>
+			<th>Nome</th>
+			<th>Prezzo</th>
+			<th>Calorie</th>
+		</tr>
+		<tr th:each="pizza : ${pizze.elencoOrdinabili}">
+			<td th:text="${pizza.name}"></td>
+			<td th:text="${pizza.price}"></td>
+			<td th:text="${pizza.calories}"></td>
+		</tr>
+		<tr th:each="condimento : ${condimenti.elencoOrdinabili2}">
+			<td th:text="${condimento.name}"></td>
+			<td th:text="${condimento.price}"></td>
+			<td th:text="${condimento.calories}"></td>
+		</tr>
+		<tr th:each="bevanda : ${bevande.elencoOrdinabili3}">
+			<td th:text="${bevanda.name}"></td>
+			<td th:text="${bevanda.price}"></td>
+			<td th:text="${bevanda.calories}"></td>
+		</tr>
+		<tr th:each="gadget : ${gadgets.elencoGadgets}">
+			<td th:text="${gadget.name}"></td>
+			<td th:text="${gadget.price}"></td>
+		</tr>
+
+	</table>
+
+</body>
+</html>

@@ -1,19 +1,18 @@
 package it.epicode.be;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
 import it.epicode.be.model.Bevanda;
 import it.epicode.be.model.Condimento;
 import it.epicode.be.model.FranchiseItem;
 import it.epicode.be.model.Menu;
-import it.epicode.be.model.MenuItem;
 import it.epicode.be.model.Ordine;
 import it.epicode.be.model.Pizza;
 import it.epicode.be.model.Tavolo;
@@ -34,21 +33,36 @@ public class MenuRunner implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		ctx = new AnnotationConfigApplicationContext(MenuConfigurazione.class);
+	
 
 		popolaMenuCibo(menu);
 		popolaMenuGadget(menu);
 		
-		Tavolo t1 = ctx.getBean(Tavolo.class);
-		Ordine o1 = ctx.getBean(Ordine.class);
+		Tavolo t1 = (Tavolo) ctx.getBean("Tavolo");
+		Tavolo t2 = (Tavolo) ctx.getBean("Tavolo2");
+		Tavolo t3 = (Tavolo) ctx.getBean("Tavolo3");
+		Ordine o1 = (Ordine) ctx.getBean("Ordine");
+		Ordine o2 = (Ordine) ctx.getBean("Ordine2");
+		Ordine o3 = (Ordine) ctx.getBean("Ordine3");
+		
+		List<Ordine> listaOrdini = new ArrayList<>();
+		listaOrdini.add(o1);
+		listaOrdini.add(o2);
+		listaOrdini.add(o3);
 		
 		o1.addItem((Pizza) ctx.getBean("Margherita"));
 		o1.addItem((Pizza) ctx.getBean("Margherita"));
 		o1.addItem((Pizza) ctx.getBean("Hawaii"));
 		o1.addItem((Pizza) ctx.getBean("SalamePizza"));
+		
+		o3.addItem((Bevanda) ctx.getBean("Limonata"));
+		
+		o2.addItem((FranchiseItem) ctx.getBean("Tazza"));
 
 		o1.stampa();
 		o1.getTotale(coperto);
+		o2.getTotale(coperto);
+		o3.getTotale(coperto);
 
 	}
 
