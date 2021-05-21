@@ -41,10 +41,12 @@ public class OrdineController {
 				model.addAttribute("totale", ordine.getSommaCosti());
 				model.addAttribute("tavolo", ordine.getTavolo().getNumero());
 				model.addAttribute("stato", ordine.getStatoOrdine());
+				return "datiOrdine";
 			}
+			
 		}
-
-		return "datiOrdine";
+		return "error";
+		
 	}
 
 }

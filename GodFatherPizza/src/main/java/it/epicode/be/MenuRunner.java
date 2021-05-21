@@ -61,7 +61,11 @@ public class MenuRunner implements CommandLineRunner {
 
 		o1.stampa();
 		o1.getTotale(coperto);
+		
+		o2.stampa();
 		o2.getTotale(coperto);
+		
+		o3.stampa();
 		o3.getTotale(coperto);
 
 	}
